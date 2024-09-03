@@ -1,12 +1,18 @@
 import type { ShipType } from '@/types/ShipType'
 
 export class Ship {
+  private id: string
   private maxHitpoints: number
   private currentHitpoints: number
 
   constructor(shipType: ShipType) {
+    this.id = crypto.randomUUID()
     this.maxHitpoints = shipType
     this.currentHitpoints = shipType
+  }
+
+  public getId(): string {
+    return this.id
   }
 
   public getMaxHitpoints(): number {
