@@ -1,7 +1,7 @@
-export enum SHIP_TYPES {
-  Carrier = 5,
-  Battleship = 4,
-  Cruiser = 3,
-  Destroyer = 2,
-  Submarine = 1
+export enum ShipType {
+  CARRIER = 5,
+  BATTLESHIP = 4,
+  CRUISER = 3,
+  DESTROYER = 2,
+  SUBMARINE = 1
 }
