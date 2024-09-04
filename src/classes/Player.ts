@@ -30,6 +30,10 @@ export class Player {
     return this.fleet.isDestroyed()
   }
 
+  public setDefeated(): void {
+    this.fleet.getShips().forEach((ship) => ship.destroy())
+  }
+
   public reset(): void {
     this.fleet = new Fleet()
   }

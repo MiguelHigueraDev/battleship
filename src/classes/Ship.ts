@@ -28,6 +28,10 @@ export class Ship {
     this.currentHitpoints -= 1
   }
 
+  public destroy(): void {
+    this.currentHitpoints = 0
+  }
+
   public isDestroyed(): boolean {
     return this.currentHitpoints < 1
   }
