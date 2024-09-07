@@ -19,12 +19,16 @@ jobs:
         
     - name: Install dependencies
       run: yarn install --frozen-lockfile
+      working-directory: ./frontend
         
     - name: Lint the project
       run: yarn lint
+      working-directory: ./frontend
 
     - name: Typecheck the project
       run: npx tsc --noEmit
+      working-directory: ./frontend
 
     - name: Run tests
       run: yarn test:unit
+      working-directory: ./frontend
