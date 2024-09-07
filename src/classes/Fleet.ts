@@ -9,8 +9,8 @@ export class Fleet {
       this.ships = ships
     } else {
       this.ships = [
-        new Ship(ShipType.BATTLESHIP),
         new Ship(ShipType.CARRIER),
+        new Ship(ShipType.BATTLESHIP),
         new Ship(ShipType.CRUISER),
         new Ship(ShipType.DESTROYER),
         new Ship(ShipType.SUBMARINE)
