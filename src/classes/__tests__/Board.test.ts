@@ -14,12 +14,12 @@ describe('Board', () => {
   describe('constructor', () => {
     it('should create a board with the specified size', () => {
       expect(board.getSize()).toBe(10)
-      expect(board.getBoard().length).toBe(10)
-      expect(board.getBoard()[0].length).toBe(10)
+      expect(board.getPlacedShips().length).toBe(10)
+      expect(board.getPlacedShips()[0].length).toBe(10)
     })
 
     it('should initialize an empty board', () => {
-      const emptyBoard = board.getBoard()
+      const emptyBoard = board.getPlacedShips()
       for (let y = 0; y < 10; y++) {
         for (let x = 0; x < 10; x++) {
           expect(emptyBoard[y][x]).toBeUndefined()
@@ -34,7 +34,7 @@ describe('Board', () => {
       const coords: Coordinates = { x: 0, y: 0 }
       board.placeShip(ship, coords, 'horizontal')
 
-      const placedBoard = board.getBoard()
+      const placedBoard = board.getPlacedShips()
       expect(placedBoard[0][0]).toBe(ship)
       expect(placedBoard[0][1]).toBe(ship)
       expect(placedBoard[0][2]).toBe(ship)
@@ -47,7 +47,7 @@ describe('Board', () => {
       const coords: Coordinates = { x: 0, y: 0 }
       board.placeShip(ship, coords, 'vertical')
 
-      const placedBoard = board.getBoard()
+      const placedBoard = board.getPlacedShips()
       expect(placedBoard[0][0]).toBe(ship)
       expect(placedBoard[1][0]).toBe(ship)
       expect(placedBoard[2][0]).toBe(ship)
@@ -60,7 +60,7 @@ describe('Board', () => {
       const coords: Coordinates = { x: 8, y: 0 }
       expect(() => board.placeShip(ship, coords, 'horizontal')).toThrow('Ship out of bounds')
 
-      const placedBoard = board.getBoard()
+      const placedBoard = board.getPlacedShips()
       expect(placedBoard[0][8]).toBeUndefined()
       expect(placedBoard[0][9]).toBeUndefined()
     })
@@ -70,7 +70,7 @@ describe('Board', () => {
       const coords: Coordinates = { x: 0, y: 8 }
       expect(() => board.placeShip(ship, coords, 'vertical')).toThrow('Ship out of bounds')
 
-      const placedBoard = board.getBoard()
+      const placedBoard = board.getPlacedShips()
       expect(placedBoard[8][0]).toBeUndefined()
       expect(placedBoard[9][0]).toBeUndefined()
     })
@@ -80,14 +80,23 @@ describe('Board', () => {
       const ship2 = new Ship(ShipType.DESTROYER)
       board.placeShip(ship1, { x: 0, y: 0 }, 'horizontal')
       expect(() => board.placeShip(ship2, { x: 1, y: 0 }, 'vertical')).toThrow(
-        'Ship already placed at 1, 0'
+        'Ship already placed in this area'
       )
 
-      const placedBoard = board.getBoard()
+      const placedBoard = board.getPlacedShips()
       expect(placedBoard[0][0]).toBe(ship1)
       expect(placedBoard[0][1]).toBe(ship1)
       expect(placedBoard[0][2]).toBe(ship1)
       expect(placedBoard[1][1]).toBeUndefined()
+    })
+  })
+
+  describe('receiveAttack', () => {
+    it('should hit a ship on the board', () => {
+      const ship = new Ship(ShipType.CRUISER)
+      board.placeShip(ship, { x: 0, y: 0 }, 'horizontal')
+      board.receiveAttack({ x: 0, y: 0 })
+      expect(ship.getHitpoints()).toBe(2)
     })
   })
 })

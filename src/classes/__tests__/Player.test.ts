@@ -10,8 +10,10 @@ describe('Player', () => {
     player = new Player()
   })
 
-  it('should initialize with a fleet', () => {
-    expect(player.getFleet()).toBeDefined()
+  describe('constructor', () => {
+    it('should initialize with a fleet', () => {
+      expect(player.getFleet()).toBeDefined()
+    })
   })
 
   it('should add ships to the fleet', () => {

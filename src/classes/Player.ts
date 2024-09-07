@@ -1,13 +1,15 @@
+import type { Coordinates } from '@/types/Coordinates'
+import { Board } from './Board'
 import { Fleet } from './Fleet'
 import type { Ship } from './Ship'
 
 export class Player {
   private id: string
-  private fleet: Fleet
+  private board: Board
 
   constructor() {
     this.id = crypto.randomUUID()
-    this.fleet = new Fleet()
+    this.board = new Board()
   }
 
   public getId(): string {
@@ -15,26 +17,41 @@ export class Player {
   }
 
   public getFleet(): Fleet {
-    return this.fleet
+    return this.board.getFleet()
+  }
+
+  public getBoard(): Board {
+    return this.board
   }
 
   public addShip(ship: Ship): void {
-    this.fleet.addShip(ship)
+    this.board.getFleet().addShip(ship)
   }
 
   public removeShip(ship: Ship): void {
-    this.fleet.removeShip(ship)
+    this.board.getFleet().removeShip(ship)
+  }
+
+  public attack(opponent: Player, coordinates: Coordinates): void {
+    opponent.receiveAttack(coordinates)
+  }
+
+  public receiveAttack(coordinates: Coordinates): void {
+    this.board.receiveAttack(coordinates)
   }
 
   public isDefeated(): boolean {
-    return this.fleet.isDestroyed()
+    return this.board.getFleet().isDestroyed()
   }
 
   public setDefeated(): void {
-    this.fleet.getShips().forEach((ship) => ship.destroy())
+    this.board
+      .getFleet()
+      .getShips()
+      .forEach((ship) => ship.destroy())
   }
 
   public reset(): void {
-    this.fleet = new Fleet()
+    this.board.setFleet(new Fleet())
   }
 }
