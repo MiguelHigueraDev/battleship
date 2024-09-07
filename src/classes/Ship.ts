@@ -1,4 +1,4 @@
-import type { ShipType } from '@/types/ShipType'
+import { shipTypeToName, type ShipType } from '@/types/ShipType'
 
 export class Ship {
   private id: string
@@ -21,6 +21,10 @@ export class Ship {
 
   public getHitpoints(): number {
     return this.currentHitpoints
+  }
+
+  public getName(): string {
+    return shipTypeToName[this.maxHitpoints as keyof typeof shipTypeToName]
   }
 
   public hit(): void {
