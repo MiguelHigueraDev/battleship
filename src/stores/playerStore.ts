@@ -9,7 +9,7 @@ export const usePlayerStore = defineStore('player', () => {
   const player = ref<Player>(new Player())
   const selectedShip = ref<Ship | null>(null)
   const selectedOrientation = ref<Orientation>('horizontal')
-  
+
   const board = computed(() => player.value.getBoard())
   const placedShipIds = computed(() => {
     const placedShips = board.value.getPlacedShips()
@@ -17,7 +17,8 @@ export const usePlayerStore = defineStore('player', () => {
   })
 
   function changeOrientation() {
-    selectedOrientation.value = selectedOrientation.value === 'horizontal' ? 'vertical' : 'horizontal'
+    selectedOrientation.value =
+      selectedOrientation.value === 'horizontal' ? 'vertical' : 'horizontal'
   }
 
   function setSelectedShip(ship: Ship) {
@@ -46,26 +47,25 @@ export const usePlayerStore = defineStore('player', () => {
       } catch (error) {
         console.warn(error)
       }
-
     }
   }
 
   function removeShip(position: Coordinates) {
-    const ship = board.value.getPlacedShips()[position.y][position.x];
+    const ship = board.value.getPlacedShips()[position.y][position.x]
     if (ship) {
       board.value.removeShip(ship)
     }
   }
 
   function selectNextAvailableShip() {
-    const ships = board.value.getFleet().getShips();
-    const currentIndex = ships.indexOf(selectedShip.value as Ship);
+    const ships = board.value.getFleet().getShips()
+    const currentIndex = ships.indexOf(selectedShip.value as Ship)
     // Cycles through the ships and selects the next available one if any
     for (let i = 1; i <= ships.length; i++) {
-      const nextIndex = (currentIndex + i) % ships.length;
+      const nextIndex = (currentIndex + i) % ships.length
       if (!placedShipIds.value.has(ships[nextIndex].getId())) {
-        setSelectedShip(ships[nextIndex]);
-        return;
+        setSelectedShip(ships[nextIndex])
+        return
       }
     }
   }

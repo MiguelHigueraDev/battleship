@@ -15,7 +15,9 @@ const { placeOrRemoveShip } = playerStore
       :key="cellIndex"
       v-for="(shipCell, cellIndex) in row"
       @click="() => placeOrRemoveShip({ x: cellIndex, y: rowIndex })"
-    >{{ rowIndex}}, {{cellIndex }}</button>
+    >
+      {{ rowIndex }}, {{ cellIndex }}
+    </button>
   </div>
 </template>
 

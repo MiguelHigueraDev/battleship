@@ -77,7 +77,11 @@ export class Board {
     return true
   }
 
-  private checkAlreadyPlaced(coords: Coordinates, shipLength: number, orientation: Orientation): boolean {
+  private checkAlreadyPlaced(
+    coords: Coordinates,
+    shipLength: number,
+    orientation: Orientation
+  ): boolean {
     if (orientation === 'horizontal') {
       for (let i = 0; i < shipLength; i++) {
         if (this.placedShips[coords.y][coords.x + i] !== undefined) return false
