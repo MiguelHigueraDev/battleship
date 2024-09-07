@@ -35,18 +35,17 @@ export const usePlayerStore = defineStore('player', () => {
   }
 
   function placeShip(position: Coordinates) {
-    if (selectedShip.value) {
-      if (placedShipIds.value.has(selectedShip.value.getId())) {
-        console.warn('This ship has already been placed! Remove it first.')
-        return
-      }
+    if (!selectedShip.value) return
+    if (placedShipIds.value.has(selectedShip.value.getId())) {
+      console.warn('This ship has already been placed! Remove it first.')
+      return
+    }
 
-      try {
-        board.value.placeShip(selectedShip.value as Ship, position, selectedOrientation.value)
-        selectNextAvailableShip()
-      } catch (error) {
-        console.warn(error)
-      }
+    try {
+      board.value.placeShip(selectedShip.value as Ship, position, selectedOrientation.value)
+      selectNextAvailableShip()
+    } catch (error) {
+      console.warn(error)
     }
   }
 
