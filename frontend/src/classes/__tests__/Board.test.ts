@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { Board } from '../Board'
-import type { Coordinates } from '@/types/Coordinates'
 import { Ship } from '../Ship'
-import { ShipType } from '@/types/ShipType'
+import type { Coordinates } from '../../../../shared/Coordinates'
+import { ShipType } from '../../../../shared/ShipType'
 
 describe('Board', () => {
   let board: Board

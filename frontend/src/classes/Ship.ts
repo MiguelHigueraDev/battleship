@@ -1,4 +1,5 @@
-import { shipTypeToName, type ShipType } from '@/types/ShipType'
+import { shipTypeToName, type ShipType } from "../../../shared/ShipType"
+
 
 export class Ship {
   private id: string

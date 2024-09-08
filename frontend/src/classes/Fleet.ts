@@ -1,4 +1,5 @@
-import { ShipType } from '@/types/ShipType'
+
+import { ShipType } from '../../../shared/ShipType'
 import { Ship } from './Ship'
 
 export class Fleet {

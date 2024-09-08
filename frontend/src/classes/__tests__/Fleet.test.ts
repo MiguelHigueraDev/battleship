@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { Fleet } from '../Fleet'
-import { ShipType } from '@/types/ShipType'
 import { Ship } from '../Ship'
+import { ShipType } from '../../../../shared/ShipType'
 
 describe('Fleet', () => {
   let fleet: Fleet

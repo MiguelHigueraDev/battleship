@@ -1,4 +1,4 @@
-import type { Coordinates } from '@/types/Coordinates'
+import type { Coordinates } from '../../../shared/Coordinates'
 import { Board } from './Board'
 import { Fleet } from './Fleet'
 import type { Ship } from './Ship'

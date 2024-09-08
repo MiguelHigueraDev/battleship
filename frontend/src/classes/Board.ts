@@ -1,7 +1,7 @@
-import type { Coordinates } from '@/types/Coordinates'
+import type { Coordinates } from '../../../shared/Coordinates'
 import type { Ship } from './Ship'
 import { Fleet } from './Fleet'
-import type { Orientation } from '@/types/Orientation'
+import type { Orientation } from '../../../shared/Orientation'
 
 export class Board {
   private placedShips: (Ship | undefined)[][]

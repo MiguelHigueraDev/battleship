@@ -1,7 +1,7 @@
 import { Player } from '@/classes/Player'
 import type { Ship } from '@/classes/Ship'
-import type { Coordinates } from '@/types/Coordinates'
-import type { Orientation } from '@/types/Orientation'
+import type { Orientation } from '../../../shared/Orientation'
+import type { Coordinates } from '../../../shared/Coordinates'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
